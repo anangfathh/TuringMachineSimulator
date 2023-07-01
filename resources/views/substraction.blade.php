@@ -26,19 +26,26 @@
                       <span class="input-group-text" id="inputGroup-sizing-default">Output</span>
                       <input type="text" class="form-control" id="show-answer" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" disabled/>
                 </div>
-                <div class="d-flex justify-content-center flex-column">
-                  <div class="d-flex w-100 justify-content-center mb-4">
-                    <div class="border rounded-3 bg-light p-2 text-md-center align-middle" id="show-state-now" style="width: 240px">
-                      <p class="my-2">-</p>
-                    </div>
-                  </div>
-                  <div class="bg-secondary overflow-auto flex-nowrap">
-                    <div id="turing_tape" style="max-width: 64rem" class="rounded-3 d-flex turing-tape overflow-auto flex-nowrap"></div>
-                    <div id="turing_tape2" style="max-width: 64rem" class="rounded-3 d-flex turing-tape overflow-auto flex-nowrap"></div>
-                  </div>
-                </div>
               </div>
-
+              <div class="card" style="display: flex; align-items: center; justify-content:center;">
+                <div class="card-body">
+                    <h5 style="text-align: center">State</h5>
+                    <div class="d-flex justify-content-center flex-column">
+                        <div class="d-flex w-100 justify-content-center mb-4">
+                            <div class="border rounded-3 bg-light p-2 text-md-center align-middle" id="show-state-now"
+                                style="width: 240px">
+                                <p class="my-2">-</p>
+                            </div>
+                        </div>
+                        <div class="bg-secondary overflow-auto flex-nowrap">
+                            <div id="turing_tape" style="max-width: 64rem"
+                                class="rounded-3 d-flex turing-tape overflow-auto flex-nowrap"></div>
+                            <div id="turing_tape2" style="max-width: 64rem"
+                                class="rounded-3 d-flex turing-tape overflow-auto flex-nowrap"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
         <script src="{{ asset('assets/js/substraction.js') }}"></script>
