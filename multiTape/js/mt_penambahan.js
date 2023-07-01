@@ -8,12 +8,15 @@ var k;
 var l;
 var result = 0;
 var nowState = 0;
+var acceptingState = 10;
 var activeState = document.getElementsByClassName("state-active");
 var trTape = document.getElementById("turing_tape");
 var trTape2 = document.getElementById("turing_tape2");
 var dispState = document.getElementById("show-state-now");
 var dispAnswer = document.getElementById("show-answer");
 var stepController = document.getElementById("controller_step");
+var animateController = document.getElementById("controller_animate");
+var skipController = document.getElementById("controller_skip");
 var initController = document.getElementById("init_step");
 
 function init() {
@@ -271,10 +274,29 @@ function step() {
   go(9, "0", "B", 9, "B", "0", "R", "R");
   go(9, "B", "B", 10, "B", "B", "R", "R");
 
-  if (state == 10) {
+  if (state == acceptingState) {
     displayState("Selesai");
     displayAnswer();
     stepController.disabled = true;
+    skipController.disabled = true;
+    animateController.disabled = true;
+  }
+}
+
+function skipState() {
+  while (state != acceptingState) {
+    step();
+  }
+}
+
+function delay(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function animateState() {
+  while (state !== acceptingState) {
+    step();
+    await delay(250);
   }
 }
 

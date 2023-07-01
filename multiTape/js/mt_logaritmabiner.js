@@ -19,6 +19,8 @@ var trTape3 = document.getElementById("turing_tape3");
 var dispState = document.getElementById("show-state-now");
 var dispAnswer = document.getElementById("show-answer");
 var stepController = document.getElementById("controller_step");
+var animateController = document.getElementById("controller_animate");
+var skipController = document.getElementById("controller_skip");
 var initController = document.getElementById("init_step");
 
 //sama kaya mtr tapi 3 tape
@@ -186,12 +188,24 @@ function step() {
     displayAnswer();
     stepController.disabled = true;
     skipController.disabled = true;
+    animateController.disabled = true;
   }
 }
 
 function skipState() {
   while (state != acceptingState) {
     step();
+  }
+}
+
+function delay(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function animateState() {
+  while (state !== acceptingState) {
+    step();
+    await delay(250);
   }
 }
 
