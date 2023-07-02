@@ -211,6 +211,39 @@ function createState3(val3) {
     };
 }
 
+function createMostLeftNode(val) {
+    this.val = val;
+    var item = document.createElement("p");
+    var n = document.createTextNode(this.val);
+    item.appendChild(n);
+    trTape.insertBefore(item, trTape.firstChild);
+    this.replaceWith = function (newValue) {
+        this.val = newValue;
+    };
+}
+
+function createMostLeftNode2(val2) {
+    this.val = val2;
+    var item2 = document.createElement("p");
+    var n2 = document.createTextNode(this.val);
+    item2.appendChild(n2);
+    trTape2.insertBefore(item2, trTape2.firstChild);
+    this.replaceWith = function (newValue) {
+        this.val = newValue;
+    };
+}
+
+function createMostLeftNode3(val3) {
+    this.val = val3;
+    var item3 = document.createElement("p");
+    var n3 = document.createTextNode(this.val);
+    item3.appendChild(n3);
+    trTape3.insertBefore(item3, trTape3.firstChild);
+    this.replaceWith = function (newValue) {
+        this.val = newValue;
+    };
+}
+
 function displayAnswer() {
     let result = 0;
     let hasY = false;
