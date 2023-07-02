@@ -39,9 +39,9 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('squares') }}" class="navbar-nav-link rounded">
+                    <a href="{{ route('power') }}" class="navbar-nav-link rounded">
                         <i class="ph-house me-2"></i>
-                        Squares
+                        Power
                     </a>
                 </li>
                 <li class="nav-item">

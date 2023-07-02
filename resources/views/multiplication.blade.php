@@ -23,6 +23,7 @@
                     {{-- <input class="btn btn-success m-2" type="button" id="controller_init" onclick="init(); this.disabled = true;" value="Submit" /> --}}
                     <button class="btn btn-primary" id="controller_step" type="button" onclick="step()"><i
                             class="ph ph-fast-forward pe-1"></i>Step</button>
+                    <button class="btn btn-warning ms-2" id="controller_animate" type="button" onclick="animateState()"><i class="ph ph-play pe-1"></i>Animate</button>
                     <button class="btn btn-info m-2" id="controller_skip" type="button" onclick="skipState()"><i
                             class="ph ph-skip-forward pe-1"></i>Skip</button>
                     <button class="btn btn-danger" type="button" onclick="window.location.reload();"><i
@@ -49,7 +50,7 @@
                                 class="rounded-3 d-flex turing-tape overflow-auto flex-nowrap"></div>
                             <div id="turing_tape2" style="max-width: 64rem"
                                 class="rounded-3 d-flex turing-tape overflow-auto flex-nowrap"></div>
-                            <div id="turing_tape2" style="max-width: 64rem"
+                            <div id="turing_tape3" style="max-width: 64rem"
                                 class="rounded-3 d-flex turing-tape overflow-auto flex-nowrap"></div>
                         </div>
                     </div>

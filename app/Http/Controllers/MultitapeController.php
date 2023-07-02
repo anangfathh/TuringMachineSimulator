@@ -7,38 +7,47 @@ use Illuminate\Http\Request;
 class MultitapeController extends Controller
 {
 
-    public function index(){
-        return view ('dashboard.index');
+    public function index()
+    {
+        return view('dashboard.index');
     }
-    public function addition(){
-        return view ('addition');
-    }
-
-    public function substraction(){
-        return view ('substraction');
+    public function addition()
+    {
+        return view('addition');
     }
 
-    public function multiplication(){
-        return view ('multiplication');
+    public function substraction()
+    {
+        return view('substraction');
     }
 
-    public function division(){
-        return view ('division');
+    public function multiplication()
+    {
+        return view('multiplication');
     }
 
-    public function factorial(){
-        return view ('factorial');
+    public function division()
+    {
+        return view('division');
     }
 
-    public function binaryLogarithm(){
-        return view ('binary');
+    public function factorial()
+    {
+        return view('factorial');
     }
 
-    public function squares(){
-        return view ('squares');
+    public function binaryLogarithm()
+    {
+        return view('binary');
     }
 
-    public function squareRoot(){
-        return view ('squareroot');
+    public function power()
+    {
+        return view('power');
+    }
+
+    public function squareRoot()
+    {
+        return view('squareroot');
     }
 }

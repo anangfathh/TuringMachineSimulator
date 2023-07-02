@@ -1,62 +1,77 @@
 var nval1 = document.getElementById("val1");
+var nval2 = document.getElementById("val2");
 var turingVal = [];
 var turingVal2 = [];
 var turingVal3 = [];
 var turingVal4 = [];
-var turingVal5 = [];
 var i;
 var j;
 var k;
 var l;
 var m;
-var n;
 var result = 0;
 var nowState = 0;
-var acceptingState = 5;
 var activeState = document.getElementsByClassName("state-active");
 var trTape = document.getElementById("turing_tape");
 var trTape2 = document.getElementById("turing_tape2");
 var trTape3 = document.getElementById("turing_tape3");
 var trTape4 = document.getElementById("turing_tape4");
-var trTape5 = document.getElementById("turing_tape5");
 var dispState = document.getElementById("show-state-now");
 var dispAnswer = document.getElementById("show-answer");
 var stepController = document.getElementById("controller_step");
 var initController = document.getElementById("init_step");
-var animateController = document.getElementById("controller_animate");
 var skipController = document.getElementById("controller_skip");
+var animateController = document.getElementById("controller_animate");
+var acceptingState = 17;
 
-//sama kaya mtr tapi 3 tape
 function init() {
     trDelete();
 
-    if (nval1.value > 0) {
+    if (nval1.value >= 0 && nval2.value >= 0) {
         for (i = 0; i < 2; i++) {
             turingVal.push(new createState("B"));
             turingVal2.push(new createState2("B"));
             turingVal3.push(new createState3("B"));
             turingVal4.push(new createState4("B"));
-            turingVal5.push(new createState5("B"));
+        }
+        if (nval1.value > 0) {
+            turingVal.push(new createState("X"));
+            turingVal2.push(new createState2("B"));
+            turingVal3.push(new createState3("B"));
+            turingVal4.push(new createState4("B"));
         }
         for (i = 0; i < nval1.value; i++) {
             turingVal.push(new createState("0"));
             turingVal2.push(new createState2("B"));
             turingVal3.push(new createState3("B"));
             turingVal4.push(new createState4("B"));
-            turingVal5.push(new createState5("B"));
+        }
+        turingVal.push(new createState("1"));
+        turingVal2.push(new createState2("B"));
+        turingVal3.push(new createState3("B"));
+        turingVal4.push(new createState4("B"));
+        if (nval2.value > 0) {
+            turingVal.push(new createState("X"));
+            turingVal2.push(new createState2("B"));
+            turingVal3.push(new createState3("B"));
+            turingVal4.push(new createState4("B"));
+        }
+        for (i = 0; i < nval2.value; i++) {
+            turingVal.push(new createState("0"));
+            turingVal2.push(new createState2("B"));
+            turingVal3.push(new createState3("B"));
+            turingVal4.push(new createState4("B"));
         }
         for (i = 0; i < 2; i++) {
             turingVal.push(new createState("B"));
             turingVal2.push(new createState2("B"));
             turingVal3.push(new createState3("B"));
             turingVal4.push(new createState4("B"));
-            turingVal5.push(new createState5("B"));
         }
         trTape.childNodes[2].classList.add("state-active");
         trTape2.childNodes[2].classList.add("state-active");
         trTape3.childNodes[2].classList.add("state-active");
         trTape4.childNodes[2].classList.add("state-active");
-        trTape5.childNodes[2].classList.add("state-active");
     } else {
         alert("Nilai belum dimasukan/negatif");
     }
@@ -64,8 +79,11 @@ function init() {
     k = 2;
     l = 2;
     m = 2;
-    n = 2;
     state = 0;
+
+    document
+        .getElementById("controller_skip")
+        .addEventListener("click", skipController);
 }
 
 function createState(val) {
@@ -108,17 +126,6 @@ function createState4(val4) {
         this.val = newValue;
     };
 }
-function createState5(val5) {
-    this.val = val5;
-    var item5 = document.createElement("p");
-    var n5 = document.createTextNode(this.val);
-    item5.appendChild(n5);
-    trTape5.appendChild(item5);
-    this.replaceWith = function (newValue) {
-        this.val = newValue;
-    };
-}
-
 function createMostLeftNode(val) {
     this.val = val;
     var item = document.createElement("p");
@@ -129,7 +136,6 @@ function createMostLeftNode(val) {
         this.val = newValue;
     };
 }
-
 function createMostLeftNode2(val2) {
     this.val = val2;
     var item2 = document.createElement("p");
@@ -140,7 +146,6 @@ function createMostLeftNode2(val2) {
         this.val = newValue;
     };
 }
-
 function createMostLeftNode3(val3) {
     this.val = val3;
     var item3 = document.createElement("p");
@@ -161,21 +166,11 @@ function createMostLeftNode4(val4) {
         this.val = newValue;
     };
 }
-function createMostLeftNode5(val5) {
-    this.val = val5;
-    var item5 = document.createElement("p");
-    var n5 = document.createTextNode(this.val);
-    item5.appendChild(n5);
-    trTape5.insertBefore(item5, trTape5.firstChild);
-    this.replaceWith = function (newValue) {
-        this.val = newValue;
-    };
-}
 
 function displayAnswer() {
-    for (i = 0; i < turingVal5.length; i++) {
-        console.log(turingVal5.length);
-        if (turingVal5[i].val == "0") {
+    for (i = 0; i < turingVal4.length; i++) {
+        console.log(turingVal4.length);
+        if (turingVal4[i].val == "0") {
             result++;
         }
     }
@@ -193,12 +188,10 @@ function trDelete() {
     trTape2.innerHTML = "";
     trTape3.innerHTML = "";
     trTape4.innerHTML = "";
-    trTape5.innerHTML = "";
     turingVal = [];
     turingVal2 = [];
     turingVal3 = [];
     turingVal4 = [];
-    turingVal5 = [];
     result = 0;
     stepController.disabled = false;
 }
@@ -210,377 +203,668 @@ function step() {
             activeState[i].classList.remove("state-active");
             activeState[i].classList.remove("state-active");
             activeState[i].classList.remove("state-active");
-            activeState[i].classList.remove("state-active");
         }
     }
+
     finished = 0;
+
     //nowState,oldvalue1,oldvalue2 | nextState,newvalue1,newvalue2,dir1,dir2,dir3,addblank
     transition(
         0,
-        "0",
-        "B",
-        "B",
-        "B",
-        "B",
-        1,
-        "0",
-        "0",
-        "0",
-        "B",
-        "0",
-        "S",
-        "S",
-        "S",
-        "S",
-        "R",
-        0
-    );
-    transition(
-        1,
-        "0",
-        "0",
-        "0",
-        "B",
-        "B",
-        1,
-        "0",
-        "0",
-        "0",
-        "0",
-        "B",
-        "S",
-        "S",
-        "L",
-        "R",
-        "S",
-        0
-    );
-    transition(
-        1,
-        "0",
-        "0",
-        "B",
-        "B",
-        "B",
-        2,
-        "0",
-        "0",
-        "B",
-        "B",
-        "B",
-        "S",
-        "L",
-        "R",
-        "S",
-        "S",
-        0
-    );
-    transition(
-        1,
-        "0",
-        "B",
-        "0",
-        "B",
-        "B",
-        7,
-        "0",
-        "B",
-        "0",
-        "B",
-        "B",
-        "S",
-        "R",
-        "S",
-        "S",
-        "S",
-        0
-    );
-    transition(
-        2,
-        "0",
-        "0",
+        "X",
         "B",
         "B",
         "B",
         1,
-        "0",
-        "0",
         "B",
         "B",
-        "B",
-        "S",
-        "L",
-        "L",
-        "S",
-        "S",
-        0
-    );
-    transition(
-        2,
-        "0",
-        "0",
-        "0",
-        "B",
-        "B",
-        2,
-        "0",
-        "0",
-        "0",
-        "0",
-        "B",
-        "S",
-        "S",
-        "R",
-        "R",
-        "S",
-        0
-    );
-    transition(
-        2,
-        "0",
-        "B",
-        "0",
-        "B",
-        "B",
-        3,
-        "0",
-        "B",
-        "0",
-        "B",
-        "B",
-        "S",
-        "R",
-        "S",
-        "S",
-        "S",
-        0
-    );
-    transition(
-        3,
-        "0",
-        "0",
-        "0",
-        "B",
-        "B",
-        3,
-        "0",
-        "0",
-        "0",
-        "B",
-        "B",
-        "S",
-        "R",
-        "R",
-        "S",
-        "S",
-        0
-    );
-    transition(
-        3,
-        "0",
-        "B",
-        "B",
-        "B",
-        "B",
-        4,
-        "0",
-        "B",
-        "B",
-        "B",
-        "B",
-        "S",
-        "L",
-        "L",
-        "L",
-        "S",
-        0
-    );
-    transition(
-        4,
-        "0",
-        "0",
-        "0",
-        "0",
-        "B",
-        4,
-        "0",
-        "0",
-        "0",
         "B",
         "B",
         "R",
         "S",
         "S",
-        "L",
-        "S",
-        0
+        "S"
     );
     transition(
-        4,
-        "B",
-        "0",
-        "0",
-        "B",
-        "B",
-        5,
-        "B",
-        "0",
-        "0",
-        "B",
-        "B",
-        "S",
-        "S",
-        "S",
-        "S",
-        "S",
-        0
-    );
-    transition(
-        4,
-        "0",
-        "0",
-        "0",
-        "B",
-        "B",
-        6,
-        "0",
-        "0",
-        "0",
-        "B",
-        "B",
-        "L",
-        "S",
-        "S",
-        "R",
-        "S",
-        0
-    );
-    transition(
-        4,
-        "B",
-        "0",
-        "0",
-        "0",
-        "B",
-        8,
-        "B",
-        "0",
-        "0",
-        "0",
-        "B",
-        "L",
-        "S",
-        "S",
-        "S",
-        "L",
-        0
-    );
-    transition(
-        6,
-        "B",
-        "0",
-        "0",
-        "B",
-        "B",
         0,
-        "B",
-        "0",
-        "0",
+        "1",
         "B",
         "B",
-        "R",
-        "R",
-        "R",
+        "B",
+        15,
+        "B",
+        "B",
+        "B",
+        "X",
         "S",
         "S",
-        0
+        "S",
+        "R"
     );
     transition(
-        6,
-        "0",
-        "0",
+        1,
         "0",
         "B",
         "B",
-        6,
+        "B",
+        1,
+        "B",
         "0",
         "0",
         "0",
+        "R",
+        "R",
+        "R",
+        "R"
+    );
+    transition(
+        1,
+        "1",
         "B",
         "B",
+        "B",
+        2,
+        "B",
+        "B",
+        "B",
+        "B",
+        "R",
+        "S",
+        "S",
+        "S"
+    );
+    transition(
+        2,
+        "X",
+        "B",
+        "B",
+        "B",
+        3,
+        "B",
+        "B",
+        "B",
+        "B",
+        "R",
+        "S",
         "L",
-        "S",
-        "S",
-        "S",
-        "S",
-        0
+        "S"
     );
     transition(
-        7,
-        "0",
-        "0",
-        "0",
+        2,
         "B",
         "B",
-        7,
-        "0",
-        "0",
-        "0",
+        "B",
+        "B",
+        16,
+        "B",
+        "B",
         "B",
         "B",
         "S",
-        "R",
         "S",
         "S",
-        "S",
-        0
+        "L"
     );
     transition(
-        7,
+        3,
+        "0",
+        "0",
         "0",
         "B",
+        3,
+        "0",
+        "0",
+        "0",
+        "0",
+        "S",
+        "S",
+        "L",
+        "R"
+    );
+    transition(
+        3,
+        "0",
         "0",
         "B",
         "B",
         4,
         "0",
-        "B",
         "0",
         "B",
         "B",
         "S",
+        "R",
+        "R",
+        "S"
+    );
+    transition(
+        3,
+        "0",
+        "B",
+        "0",
+        "B",
+        5,
+        "B",
+        "B",
+        "0",
+        "B",
+        "R",
+        "S",
+        "S",
+        "S"
+    );
+    transition(
+        4,
+        "0",
+        "0",
+        "0",
+        "B",
+        4,
+        "0",
+        "0",
+        "0",
+        "0",
+        "S",
+        "S",
+        "R",
+        "R"
+    );
+    transition(
+        4,
+        "0",
+        "0",
+        "B",
+        "B",
+        3,
+        "0",
+        "0",
+        "B",
+        "B",
+        "S",
+        "R",
         "L",
+        "S"
+    );
+    transition(
+        4,
+        "0",
+        "B",
+        "0",
+        "B",
+        6,
+        "B",
+        "B",
+        "0",
+        "B",
+        "R",
+        "S",
+        "S",
+        "S"
+    );
+    transition(
+        5,
+        "0",
+        "B",
+        "0",
+        "B",
+        5,
+        "0",
+        "B",
+        "B",
+        "B",
+        "S",
         "S",
         "L",
+        "S"
+    );
+    transition(
+        5,
+        "B",
+        "B",
+        "0",
+        "B",
+        17,
+        "B",
+        "B",
+        "0",
+        "B",
         "S",
-        0
+        "S",
+        "S",
+        "S"
+    );
+    transition(
+        5,
+        "0",
+        "B",
+        "B",
+        "B",
+        7,
+        "0",
+        "B",
+        "B",
+        "B",
+        "S",
+        "S",
+        "S",
+        "L"
+    );
+    transition(
+        6,
+        "0",
+        "B",
+        "0",
+        "B",
+        6,
+        "0",
+        "B",
+        "B",
+        "B",
+        "S",
+        "S",
+        "R",
+        "S"
+    );
+    transition(
+        6,
+        "B",
+        "B",
+        "0",
+        "B",
+        17,
+        "B",
+        "B",
+        "0",
+        "B",
+        "S",
+        "S",
+        "S",
+        "S"
+    );
+    transition(
+        6,
+        "0",
+        "B",
+        "B",
+        "B",
+        8,
+        "0",
+        "B",
+        "B",
+        "B",
+        "S",
+        "S",
+        "S",
+        "L"
+    );
+    transition(
+        7,
+        "0",
+        "B",
+        "B",
+        "0",
+        7,
+        "0",
+        "B",
+        "0",
+        "B",
+        "S",
+        "S",
+        "R",
+        "L"
+    );
+    transition(
+        7,
+        "0",
+        "B",
+        "B",
+        "B",
+        9,
+        "0",
+        "B",
+        "B",
+        "B",
+        "S",
+        "L",
+        "L",
+        "S"
     );
     transition(
         8,
         "0",
+        "B",
+        "B",
+        "0",
+        8,
+        "0",
+        "B",
+        "0",
+        "B",
+        "S",
+        "S",
+        "L",
+        "L"
+    );
+    transition(
+        8,
+        "0",
+        "B",
+        "B",
+        "B",
+        10,
+        "0",
+        "B",
+        "B",
+        "B",
+        "S",
+        "L",
+        "R",
+        "S"
+    );
+    transition(
+        9,
+        "0",
+        "0",
+        "0",
+        "B",
+        9,
         "0",
         "0",
         "0",
         "0",
-        5,
+        "S",
+        "S",
+        "L",
+        "R"
+    );
+    transition(
+        9,
+        "0",
+        "B",
+        "0",
+        "B",
+        11,
+        "B",
+        "B",
+        "0",
+        "B",
+        "R",
+        "S",
+        "S",
+        "S"
+    );
+    transition(
+        9,
+        "0",
+        "0",
+        "B",
+        "B",
+        10,
+        "0",
+        "0",
+        "B",
+        "B",
+        "S",
+        "L",
+        "R",
+        "S"
+    );
+    transition(
+        10,
         "0",
         "0",
         "0",
+        "B",
+        10,
+        "0",
+        "0",
+        "0",
+        "0",
+        "S",
+        "S",
+        "R",
+        "R"
+    );
+    transition(
+        10,
+        "0",
+        "B",
+        "0",
+        "B",
+        12,
+        "B",
+        "B",
+        "0",
+        "B",
+        "R",
+        "S",
+        "S",
+        "S"
+    );
+    transition(
+        10,
+        "0",
+        "0",
+        "B",
+        "B",
+        9,
+        "0",
+        "0",
+        "B",
+        "B",
+        "S",
+        "L",
+        "L",
+        "S"
+    );
+    transition(
+        11,
+        "0",
+        "B",
+        "0",
+        "B",
+        11,
+        "0",
+        "B",
+        "B",
+        "B",
+        "S",
+        "S",
+        "L",
+        "S"
+    );
+    transition(
+        11,
+        "0",
+        "B",
+        "B",
+        "B",
+        13,
+        "0",
+        "B",
+        "B",
+        "B",
+        "S",
+        "S",
+        "S",
+        "L"
+    );
+    transition(
+        11,
+        "B",
+        "B",
+        "0",
+        "B",
+        17,
+        "B",
+        "B",
         "0",
         "B",
         "S",
         "S",
         "S",
-        "S",
-        "S",
-        0
+        "S"
     );
-
-    console.log("turingVal:", turingVal);
-    console.log("turingVal2:", turingVal2);
-    console.log("turingVal3:", turingVal3);
-    console.log("turingVal4:", turingVal4);
-    console.log("turingVal5:", turingVal5);
+    transition(
+        12,
+        "0",
+        "B",
+        "0",
+        "B",
+        12,
+        "0",
+        "B",
+        "B",
+        "B",
+        "S",
+        "S",
+        "R",
+        "S"
+    );
+    transition(
+        12,
+        "0",
+        "B",
+        "B",
+        "B",
+        14,
+        "0",
+        "B",
+        "B",
+        "B",
+        "S",
+        "S",
+        "S",
+        "L"
+    );
+    transition(
+        12,
+        "B",
+        "B",
+        "0",
+        "B",
+        17,
+        "B",
+        "B",
+        "0",
+        "B",
+        "S",
+        "S",
+        "S",
+        "S"
+    );
+    transition(
+        13,
+        "0",
+        "B",
+        "B",
+        "0",
+        13,
+        "0",
+        "B",
+        "0",
+        "B",
+        "S",
+        "S",
+        "R",
+        "L"
+    );
+    transition(
+        13,
+        "0",
+        "B",
+        "B",
+        "B",
+        3,
+        "0",
+        "B",
+        "B",
+        "B",
+        "S",
+        "R",
+        "L",
+        "S"
+    );
+    transition(
+        14,
+        "0",
+        "B",
+        "B",
+        "0",
+        14,
+        "0",
+        "B",
+        "0",
+        "B",
+        "S",
+        "S",
+        "L",
+        "L"
+    );
+    transition(
+        14,
+        "0",
+        "B",
+        "B",
+        "B",
+        4,
+        "0",
+        "B",
+        "B",
+        "B",
+        "S",
+        "R",
+        "R",
+        "S"
+    );
+    transition(
+        15,
+        "B",
+        "B",
+        "B",
+        "B",
+        17,
+        "B",
+        "B",
+        "B",
+        "X",
+        "S",
+        "S",
+        "S",
+        "R"
+    );
+    transition(
+        16,
+        "B",
+        "B",
+        "B",
+        "B",
+        15,
+        "B",
+        "B",
+        "B",
+        "0",
+        "S",
+        "S",
+        "S",
+        "L"
+    );
+    transition(
+        16,
+        "B",
+        "B",
+        "B",
+        "0",
+        16,
+        "B",
+        "B",
+        "B",
+        "B",
+        "S",
+        "S",
+        "S",
+        "L"
+    );
 
     if (state == acceptingState) {
         displayState("Selesai");
@@ -614,26 +898,21 @@ function transition(
     oldVal2,
     oldVal3,
     oldVal4,
-    oldVal5,
     nextState,
     newVal,
     newVal2,
     newVal3,
     newVal4,
-    newVal5,
     directiont1,
     directiont2,
     directiont3,
-    directiont4,
-    directiont5,
-    addBlank
+    directiont4
 ) {
     if (
         turingVal[j].val == oldVal &&
         turingVal2[k].val == oldVal2 &&
         turingVal3[l].val == oldVal3 &&
         turingVal4[m].val == oldVal4 &&
-        turingVal5[n].val == oldVal5 &&
         state == nowState &&
         finished == 0
     ) {
@@ -641,24 +920,18 @@ function transition(
         turingVal2[k].replaceWith(newVal2);
         turingVal3[l].replaceWith(newVal3);
         turingVal4[m].replaceWith(newVal4);
-        turingVal5[n].replaceWith(newVal5);
-
         trTape.childNodes[j].textContent = newVal;
         trTape2.childNodes[k].textContent = newVal2;
         trTape3.childNodes[l].textContent = newVal3;
         trTape4.childNodes[m].textContent = newVal4;
-        trTape5.childNodes[n].textContent = newVal5;
         trTape.childNodes[j].classList.add("state-active");
         trTape2.childNodes[k].classList.add("state-active");
         trTape3.childNodes[l].classList.add("state-active");
         trTape4.childNodes[m].classList.add("state-active");
-        trTape5.childNodes[n].classList.add("state-active");
         trTape.childNodes[j].scrollIntoView();
         trTape2.childNodes[k].scrollIntoView();
         trTape3.childNodes[l].scrollIntoView();
         trTape4.childNodes[m].scrollIntoView();
-        trTape5.childNodes[n].scrollIntoView();
-
         state = nextState;
         displayState(
             "(q" +
@@ -673,8 +946,6 @@ function transition(
                 oldVal3 +
                 "," +
                 oldVal4 +
-                "," +
-                oldVal5 +
                 "/" +
                 newVal +
                 "," +
@@ -683,8 +954,6 @@ function transition(
                 newVal3 +
                 "," +
                 newVal4 +
-                "," +
-                newVal5 +
                 ", " +
                 directiont1 +
                 "," +
@@ -692,43 +961,34 @@ function transition(
                 "," +
                 directiont3 +
                 "," +
-                directiont4 +
-                "," +
-                directiont5
+                directiont4
         );
         if (
             j == turingVal.length - 1 ||
             k == turingVal2.length - 1 ||
             l == turingVal3.length - 1 ||
-            m == turingVal4.length - 1 ||
-            n == turingVal5.length - 1
+            m == turingVal4.length - 1
         ) {
             turingVal.push(new createState("B"));
             turingVal2.push(new createState2("B"));
             turingVal3.push(new createState3("B"));
             turingVal4.push(new createState4("B"));
-            turingVal5.push(new createState5("B"));
         }
-
-        if (j == 0 || k == 0 || l == 0) {
+        if (j == 0 || k == 0 || l == 0 || m == 0) {
             turingVal.unshift(new createMostLeftNode("B"));
             turingVal2.unshift(new createMostLeftNode2("B"));
             turingVal3.unshift(new createMostLeftNode3("B"));
             turingVal4.unshift(new createMostLeftNode4("B"));
-            turingVal5.unshift(new createMostLeftNode5("B"));
-
-            j += 1;
-            k += 1;
-            l += 1;
-            m += 1;
-            n += 1;
+            j++;
+            k++;
+            l++;
+            m++;
         }
-
-        decide(directiont1, directiont2, directiont3, directiont4, directiont5);
+        decide(directiont1, directiont2, directiont3, directiont4);
         finished = 1;
     }
 }
-function decide(dt1, dt2, dt3, dt4, dt5) {
+function decide(dt1, dt2, dt3, dt4) {
     //mungkin ganti switch case
     if (dt1 == "R") {
         j++;
@@ -757,12 +1017,5 @@ function decide(dt1, dt2, dt3, dt4, dt5) {
         m--;
     } else {
         m;
-    }
-    if (dt5 == "R") {
-        n++;
-    } else if (dt5 == "L") {
-        n--;
-    } else {
-        n;
     }
 }

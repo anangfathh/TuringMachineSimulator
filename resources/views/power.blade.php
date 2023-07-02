@@ -4,7 +4,7 @@
     <div class="content container pt-0">
         <div class="card mt-4" style="display: flex; align-items: center; justify-content:center;">
             <div class="card-body">
-                <h5 class="card-title" style="text-align: center; font-size: xx-large; margin-bottom: 10px">Squares</h5>
+                <h5 class="card-title" style="text-align: center; font-size: xx-large; margin-bottom: 10px">Power</h5>
                 <div class="d-flex justify-content-between">
                     <div>
                         <label for="val1">Input 1</label>
@@ -19,6 +19,7 @@
                     <button class="btn btn-success m-2" type="submit" id="controller_init" onclick="init(); this.disabled = true;"value="Submit"><i class="ph ph-check pe-1"></i>Submit</button>
                     {{-- <input class="btn btn-success m-2" type="button" id="controller_init" onclick="init(); this.disabled = true;" value="Submit" /> --}}
                     <button class="btn btn-primary" id="controller_step" type="button" onclick="step()"><i class="ph ph-fast-forward pe-1"></i>Step</button>
+                    <button class="btn btn-warning ms-2" id="controller_animate" type="button" onclick="animateState()"><i class="ph ph-play pe-1"></i>Animate</button>
                     <button class="btn btn-info m-2" id="controller_skip" type="button" onclick="skipState()"><i class="ph ph-skip-forward pe-1"></i>Skip</button>
                     <button class="btn btn-danger" type="button" onclick="window.location.reload();"><i class="ph ph-arrow-counter-clockwise pe-1"></i>Reset</button>
                 </div>
@@ -52,5 +53,5 @@
             </div>
         </div>
     </div>
-        <script src="{{ asset('assets/js/square.js') }}"></script>
+        <script src="{{ asset('assets/js/power.js') }}"></script>
     @endsection
