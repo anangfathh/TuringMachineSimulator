@@ -25,6 +25,6 @@ Route::get('/substraction', [MultitapeController::class, 'substraction'])->name(
 Route::get('/multiplication', [MultitapeController::class, 'multiplication'])->name('multiplication');
 Route::get('/division', [MultitapeController::class, 'division'])->name('division');
 Route::get('/binarylogarithm', [MultitapeController::class, 'binarylogarithm'])->name('binary');
-Route::get('/squares', [MultitapeController::class, 'power'])->name('power');
+Route::get('/power', [MultitapeController::class, 'power'])->name('power');
 Route::get('/squareroot', [MultitapeController::class, 'squareroot'])->name('squareroot');
 Route::get('/factorial', [MultitapeController::class, 'factorial'])->name('factorial');

@@ -235,7 +235,7 @@ function step() {
         "B",
         "B",
         "B",
-        "X",
+        "B",
         "S",
         "S",
         "S",
@@ -827,11 +827,11 @@ function step() {
         "B",
         "B",
         "B",
-        "X",
+        "B",
         "S",
         "S",
         "S",
-        "R"
+        "L"
     );
     transition(
         16,

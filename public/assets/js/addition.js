@@ -252,29 +252,29 @@ function step() {
     finished = 0;
     //nowState,oldvalue1,oldvalue2 | nextState,newvalue1,newvalue2,dir1,dir2,dir3,addblank
 
-    go(0, "X", "B", 1, "B", "B", "R", "S");
-    go(0, "1", "B", 8, "B", "B", "R", "S");
-    go(1, "0", "B", 1, "B", "0", "R", "R");
-    go(1, "1", "B", 2, "B", "B", "R", "S");
-    go(2, "X", "B", 3, "B", "B", "R", "S");
-    go(2, "Y", "B", 6, "B", "B", "R", "L");
-    go(2, "B", "B", 4, "B", "B", "S", "L");
-    go(3, "0", "B", 3, "B", "0", "R", "R");
-    go(3, "B", "B", 4, "B", "B", "L", "L");
-    go(4, "B", "0", 4, "B", "0", "S", "L");
-    go(4, "B", "B", 5, "B", "X", "S", "R");
-    go(5, "B", "0", 5, "B", "0", "S", "R");
-    go(5, "B", "B", 10, "B", "B", "S", "R");
-    go(6, "B", "0", 4, "B", "0", "S", "L");
-    go(6, "0", "0", 6, "B", "B", "R", "L");
-    go(6, "0", "B", 7, "0", "Y", "S", "R");
-    go(6, "B", "B", 10, "B", "B", "R", "R");
-    go(7, "0", "B", 7, "B", "0", "R", "R");
-    go(7, "B", "B", 10, "B", "B", "R", "R");
-    go(8, "X", "B", 9, "B", "X", "R", "R");
-    go(8, "B", "B", 10, "B", "B", "R", "R");
-    go(9, "0", "B", 9, "B", "0", "R", "R");
-    go(9, "B", "B", 10, "B", "B", "R", "R");
+    transition(0, "X", "B", 1, "B", "B", "R", "S");
+    transition(0, "1", "B", 8, "B", "B", "R", "S");
+    transition(1, "0", "B", 1, "B", "0", "R", "R");
+    transition(1, "1", "B", 2, "B", "B", "R", "S");
+    transition(2, "X", "B", 3, "B", "B", "R", "S");
+    transition(2, "Y", "B", 6, "B", "B", "R", "L");
+    transition(2, "B", "B", 4, "B", "B", "S", "L");
+    transition(3, "0", "B", 3, "B", "0", "R", "R");
+    transition(3, "B", "B", 4, "B", "B", "L", "L");
+    transition(4, "B", "0", 4, "B", "0", "S", "L");
+    transition(4, "B", "B", 5, "B", "X", "S", "R");
+    transition(5, "B", "0", 5, "B", "0", "S", "R");
+    transition(5, "B", "B", 10, "B", "B", "S", "R");
+    transition(6, "B", "0", 4, "B", "0", "S", "L");
+    transition(6, "0", "0", 6, "B", "B", "R", "L");
+    transition(6, "0", "B", 7, "0", "Y", "S", "R");
+    transition(6, "B", "B", 10, "B", "B", "R", "R");
+    transition(7, "0", "B", 7, "B", "0", "R", "R");
+    transition(7, "B", "B", 10, "B", "B", "R", "R");
+    transition(8, "X", "B", 9, "B", "X", "R", "R");
+    transition(8, "B", "B", 10, "B", "B", "R", "R");
+    transition(9, "0", "B", 9, "B", "0", "R", "R");
+    transition(9, "B", "B", 10, "B", "B", "R", "R");
 
     if (state == acceptingState) {
         displayState("Selesai");
@@ -308,7 +308,7 @@ function skipState() {
     }
 }
 
-function go(
+function transition(
     nowState,
     oldVal,
     oldVal2,
